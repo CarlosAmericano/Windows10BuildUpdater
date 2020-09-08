@@ -79,7 +79,7 @@ Try {
     $webClient.DownloadFile($url, $file)
 
     # Start the upgrade process
-    Start-Process -FilePath $file -ArgumentList '/quietinstall /skipeula /auto upgrade /copylogs $UpdateFolder'
+    Start-Process -FilePath $file -ArgumentList '/quietinstall /skipeula /auto upgrade /NoReboot /copylogs $UpdateFolder'
 }
 Catch {
     $errormessage = $_.exception.message
