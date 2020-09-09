@@ -54,6 +54,7 @@ $url = 'https://go.microsoft.com/fwlink/?LinkID=799445'
 
 # Create PowershellWindows10BuildUpdater folder
 try {
+    Write-Log -Severity Information -Message "Create $($UpdateFolder)..."
     New-Item $UpdateFolder -Type Directory
 }
 Catch {
@@ -64,10 +65,10 @@ Catch {
 
 # Test if the folder is created
 if (Test-path $UpdateFolder) {
-    Write-Log -Severity Error -Message "$($UpdateFolder) is created."
+    Write-Log -Severity Information -Message "$($UpdateFolder) is created."
 }
 Else {
-    Write-Log -Severity Error -Message "$($UpdateFolder)... Is not there" 
+    Write-Log -Severity Error -Message "$($UpdateFolder)... is not there" 
 }
 
 # Go to the folder
