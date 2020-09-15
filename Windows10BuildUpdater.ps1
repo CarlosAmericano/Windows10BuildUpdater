@@ -35,13 +35,14 @@ function Write-Log {
     ) # End param
     
     $time = Get-Date -Format "d-M-yyyy HH:mm:ss"
-    $LogFile = $PSScriptRoot + "\PSWindowsUpdate.log"
+    $LogFile = "C:\PowershellWindows10BuildUpdater\PSWindowsUpdate.log"
 
     if (Test-path $LogFile) {
         
     }
     Else {
-        New-Item -path $PSScriptRoot -Name "PSWindowsUpate.log"
+        New-Item -Path "C:\" -Name "PowershellWindows10BuildUpdater" -Type Directory
+        New-Item -path "C:\PowershellWindows10BuildUpdater" -Name "PSWindowsUpate.log"
     }
 
     Add-content -Path $LogFile -value "$severity $time $message" -Passthru
