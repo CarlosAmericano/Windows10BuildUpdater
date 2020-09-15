@@ -37,14 +37,10 @@ function Write-Log {
     $time = Get-Date -Format "d-M-yyyy HH:mm:ss"
     $LogFile = "C:\PowershellWindows10BuildUpdater\PSWindowsUpdate.log"
 
-    if (Test-path $LogFile) {
-        
+    if (!(Test-path $LogFile)) {
+        New-Item -Path "C:\" -Name "PowershellWindows10BuildUpdater" -Type Directory -Force -Erroraction SilentlyContinue
+        New-Item -path "C:\PowershellWindows10BuildUpdater" -Name "PSWindowsUpate.log" -Force -Erroraction SilentlyContinue
     }
-    Else {
-        New-Item -Path "C:\" -Name "PowershellWindows10BuildUpdater" -Type Directory -force -erroraction SilentlyContinue
-        New-Item -path "C:\PowershellWindows10BuildUpdater" -Name "PSWindowsUpate.log"
-    }
-
     Add-content -Path $LogFile -value "$severity $time $message" -Passthru
 } # End Write-Log function
 
@@ -56,7 +52,7 @@ $url = 'https://go.microsoft.com/fwlink/?LinkID=799445'
 # Create PowershellWindows10BuildUpdater folder
 try {
     Write-Log -Severity Information -Message "Create $($UpdateFolder)..."
-    New-Item $UpdateFolder -Type Directory
+    New-Item $UpdateFolder -Type Directory -Force -Erroraction SilentlyContinue
 }
 Catch {
     $errormessage = $_.exception.message
