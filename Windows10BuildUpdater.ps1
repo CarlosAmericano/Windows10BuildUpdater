@@ -41,7 +41,7 @@ function Write-Log {
         
     }
     Else {
-        New-Item -Path "C:\" -Name "PowershellWindows10BuildUpdater" -Type Directory
+        New-Item -Path "C:\" -Name "PowershellWindows10BuildUpdater" -Type Directory -force -erroraction SilentlyContinue
         New-Item -path "C:\PowershellWindows10BuildUpdater" -Name "PSWindowsUpate.log"
     }
 
@@ -87,6 +87,3 @@ Catch {
     $errormessage = $_.exception.message
     Write-Log -Severity Error -Message "Update failed... Errormessage: $errormessage"
 }
-
-
-
